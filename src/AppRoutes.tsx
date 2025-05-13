@@ -4,6 +4,7 @@ import HeroDetail from './pages/HeroDetail';
 import Layout from './hoc/Layout';
 import Error404 from './pages/error404';
 import Login from './pages/Login';
+import Register from './components/Loading/Register/Register';
 
 const AppRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
             <Route path="/heroes" element={<HeroesList/>} />
             <Route path="/heroes/:id" element={<HeroDetail />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Register />} />
         </Route>
     </Routes>
   );

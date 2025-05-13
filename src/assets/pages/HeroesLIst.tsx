@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Hero } from '../types/hero';
 import { getHeroesByFirstLetter } from '../../api/heroes';
+import Loading from '../../components/Loading/Loading';
 
 const alphabet: string[] = [];
 
@@ -51,7 +52,8 @@ const HeroesList = () => {
       </ul>
       <div>
         <h2>Results</h2>
-        {isFetching && <p>Loading...</p>}
+        <Loading isLoading={isFetching} />
+        {isFetching && <p></p>}
         {!isFetching && (
           <ul>
             {heroes.map((hero) => (
