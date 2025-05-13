@@ -3,6 +3,7 @@ import HeroesList from './pages/HeroesList';
 import HeroDetail from './pages/HeroDetail';
 import Layout from './hoc/Layout';
 import Error404 from './pages/error404';
+import Login from './pages/Login';
 
 const AppRoutes = () => {
   return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
             <Route path="/" element={<h1>Home</h1>} />
             <Route path="/heroes" element={<HeroesList/>} />
             <Route path="/heroes/:id" element={<HeroDetail />} />
+            <Route path="/login" element={<Login />} />
         </Route>
     </Routes>
   );
