@@ -1,15 +1,20 @@
 import type { Hero } from "../assets/types/hero";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import FavoriteContext from "../contexts/favorites-context";
 
 type Props = {
   hero: Hero;
 };
 
 const HeroCard = ({ hero }: Props) => {
+  const { favorites, addFavorite, removeFavorite } = useContext(FavoriteContext);
+
+  const isFavorite = favorites.some((fav) => fav.id === hero.id);
+
   return (
     <div className='max-w-xs rounded overflow-hidden shadow-lg'>
         <Link key={hero.id} to={`${hero.id}`}>
-         
             <div className='h-96 overflow-hidden relative'>
                 <img
                 className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
@@ -48,6 +53,15 @@ const HeroCard = ({ hero }: Props) => {
                 </span>
             </div>
       </Link>
+      <button
+          onClick={() => (isFavorite ? removeFavorite(hero.id.toString()) : addFavorite(hero))}
+          className={`mt-2 px-4 py-1 rounded ${
+            isFavorite ? "bg-red-600 text-white" : "bg-blue-200"
+          }`}
+        >
+          {isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+      </button>
+
     </div>
   );
 };

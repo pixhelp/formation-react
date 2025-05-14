@@ -12,6 +12,7 @@
 .loader::before {
   content: '';
   box-sizing: border-box;
+  border-radius: 5px;
   width: var(--size);
   height: var(--size);
   border: 2px solid #000000;
@@ -21,7 +22,7 @@
   animation: rotationBreak 3s ease-in-out infinite alternate;
 }
 .loader::after {
-  border-color: #b40000;
+  border-color: green;
   animation-direction: alternate-reverse;
 }
 
