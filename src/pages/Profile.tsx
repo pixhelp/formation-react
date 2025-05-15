@@ -1,13 +1,20 @@
 import { useContext } from "react"
 import FavoriteContext from "../contexts/favorites-context"
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../contexts/auth-context";
 
 
 const Profile = () => {
     const { favorites } = useContext(FavoriteContext);
+    const {email, id, accessToken, connected} = useAuthContext();
 
     return (
+        
         <div>
+            <h1 className="text-2xl font-semibold mb-4">Mon Profil</h1>
+            <p>Email: {email}</p>
+            <p>ID: {id}</p>
+
             <h1 className="text-2xl font-semibold mb-4">Mes Héros Favoris</h1>
             <ul className="grid grid-cols-2 gap-4">
                 {favorites.map((hero) => (

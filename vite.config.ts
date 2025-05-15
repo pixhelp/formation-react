@@ -8,7 +8,17 @@ import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), tsconfigPaths()],
+  plugins: [react(), tailwindcss(), tsconfigPaths(),
+    {
+      name: 'ignore-specific-file-reload',
+      handleHotUpdate({ file, server }) {
+        if (file.endsWith('db.json')) {
+          // Prevent full page reload
+          return [];
+        }
+      }
+    }
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
@@ -17,6 +27,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './setupTests.ts',
+    setupFiles: ['./setupTests.ts'],
   },
 })
