@@ -3,17 +3,28 @@ import { fight } from "../utils/fight";
 import type { Hero } from "../assets/types/hero";
 import HeroInput from "../components/HeroInput";
 import HeroCard from "../components/HeroCardBattle";
+import { useAppDispatch } from "@/redux/hooks";
+import { addBattle } from "@/redux/slices/battleHistorySlice";
 
 export default function HeroBattle() {
     const [heroOne, setHeroOne] = useState<Hero | null>(null);
     const [heroTwo, setHeroTwo] = useState<Hero | null>(null);
     const [winner, setWinner] = useState<Hero | null>(null);
 
+    const dispatch = useAppDispatch();
+
     const handleBattle = () => {
-        if (heroOne && heroTwo) {
+    if (heroOne && heroTwo) {
         const result = fight(heroOne, heroTwo);
         setWinner(result);
-        }
+
+        dispatch(addBattle({
+            heroOne,
+            heroTwo,
+            winner: result,
+            timestamp: new Date().toISOString(),
+        }));
+    }
     };
 
     return (

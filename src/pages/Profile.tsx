@@ -1,12 +1,14 @@
-import { useContext } from "react"
-import FavoriteContext from "../contexts/favorites-context"
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/auth-context";
+import { useAppSelector } from "@/redux/hooks";
+import type { Hero } from "@/assets/types/hero";
 
 
 const Profile = () => {
-    const { favorites } = useContext(FavoriteContext);
-    const {email, id, accessToken, connected} = useAuthContext();
+   // const { favorites } = useContext(FavoriteContext);
+     const favorites: Hero[] = useAppSelector((state) => state.favoritesHeroes);
+     const battleHistory = useAppSelector((state) => state.battleHistory);
+    const {email, id} = useAuthContext();
 
     return (
         
@@ -33,6 +35,12 @@ const Profile = () => {
                     </Link>
                 ))}
             </ul>
+
+            {battleHistory.map((battle) => (
+                <li>
+                    {battle.heroOne.name} vs {battle.heroTwo.name} - Winner: {battle.winner.name}
+                </li>
+            ))}
       </div>
     )
 }

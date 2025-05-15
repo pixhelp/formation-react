@@ -27,6 +27,7 @@ const Layout = () => {
     {path: '/signup', name: 'Sign up', visbility: LinkVisibility.NOT_AUTH},
     {path: '/profile', name: 'Profile', visbility: LinkVisibility.AUTH},
     {path: '/logout', name: 'LogOut', visbility: LinkVisibility.AUTH},
+    {path: '/battle', name: 'Battle', visbility: LinkVisibility.PUBLIC},
   ]
   return (
     <div>
